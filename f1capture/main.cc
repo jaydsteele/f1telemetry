@@ -9,6 +9,8 @@
 
 using namespace std;
 
+static const unsigned short DEFAULT_PORT = 20777;
+
 void displayUsage(string programName);
 
 int main(int argc, char** argv) {
@@ -19,7 +21,7 @@ int main(int argc, char** argv) {
   };
 
   int c;
-  unsigned short port = 0;
+  unsigned short port = DEFAULT_PORT;
   string outputFilename;
   bool error = false;
 
