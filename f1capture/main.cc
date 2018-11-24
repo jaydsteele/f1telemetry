@@ -1,8 +1,10 @@
 #include "include/PacketHeader.h"
+#include <fstream>
 #include <getopt.h>
 #include <iostream>
 #include <stdlib.h>
 #include <string>
+#include <sys/socket.h>
 #include "f1capture/capture_telemetry.h"
 
 using namespace std;
@@ -17,7 +19,7 @@ int main(int argc, char** argv) {
   };
 
   int c;
-  int port = -1;
+  unsigned short port = 0;
   string outputFilename;
   bool error = false;
 
@@ -41,7 +43,7 @@ int main(int argc, char** argv) {
     cerr << "Error: No output filename provided" << endl;
     error = true;
   }
-  if (port == -1) {
+  if (port == 0) {
     cerr << "Error: No port number provided" << endl;
     error = true;
   }
@@ -51,8 +53,13 @@ int main(int argc, char** argv) {
     exit(EXIT_FAILURE);
   }
 
-  cout << "OUTPUT: " << outputFilename << endl;
-  cout << "PORT: " << port << endl;
+  ofstream outFile;
+  outFile.open(outputFilename, ios::out);
+
+  capture_telemetry(port, outFile);
+
+  // cout << "OUTPUT: " << outputFilename << endl;
+  // cout << "PORT: " << port << endl;
 
   return 0;
 }

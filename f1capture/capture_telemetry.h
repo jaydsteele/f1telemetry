@@ -1,6 +1,8 @@
 #ifndef __capture_telemetry_h__
 #define __capture_telemetry_h__
 
-void capture_telemetry();
+#include <ostream>
+
+void capture_telemetry(unsigned short port, std::ostream& out);
 
 #endif
