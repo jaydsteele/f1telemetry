@@ -60,9 +60,6 @@ int main(int argc, char** argv) {
 
   capture_telemetry(port, outFile);
 
-  // cout << "OUTPUT: " << outputFilename << endl;
-  // cout << "PORT: " << port << endl;
-
   return 0;
 }
 
