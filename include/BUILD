@@ -17,7 +17,7 @@ cc_library(
       "PacketHeader.h",
       "PacketLapData.h",
       "PacketMotionData.h",
-      "PacketParticipantData.h",
+      "PacketParticipantsData.h",
       "PacketSessionData.h",
       "ParticipantData.h",
       "TeamIDs.h",

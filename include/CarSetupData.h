@@ -1,3 +1,6 @@
+#ifndef __CarSetupData_h__
+#define __CarSetupData_h__
+
 #include "include/types.h"
 
 struct CarSetupData
@@ -23,3 +26,5 @@ struct CarSetupData
     uint8     m_ballast;                  // Ballast
     float     m_fuelLoad;                 // Fuel load
 };
+
+#endif

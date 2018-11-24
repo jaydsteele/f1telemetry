@@ -1,3 +1,6 @@
+#ifndef __CarTelemetryData_h__
+#define __CarTelemetryData_h__
+
 #include "include/types.h"
 
 struct CarTelemetryData
@@ -17,3 +20,5 @@ struct CarTelemetryData
     uint16    m_engineTemperature;          // Engine temperature (celsius)
     float     m_tyresPressure[4];           // Tyres pressure (PSI)
 };
+
+#endif

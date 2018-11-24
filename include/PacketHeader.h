@@ -1,3 +1,6 @@
+#ifndef __PacketHeader_h__
+#define __PacketHeader_h__
+
 #include "include/types.h"
 
 struct PacketHeader
@@ -10,3 +13,5 @@ struct PacketHeader
     uint      m_frameIdentifier;      // Identifier for the frame the data was retrieved on
     uint8     m_playerCarIndex;       // Index of player's car in the array
 };
+
+#endif

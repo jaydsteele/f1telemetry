@@ -1,5 +1,5 @@
-#ifndef __f1capture_h__
-#define __f1capture_h__
+#ifndef __capture_telemetry_h__
+#define __capture_telemetry_h__
 
 void capture_telemetry();
 

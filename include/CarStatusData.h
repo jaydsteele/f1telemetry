@@ -1,3 +1,6 @@
+#ifndef __CarStatusData_h__
+#define __CarStatusData_h__
+
 #include "include/types.h"
 
 struct CarStatusData
@@ -34,3 +37,5 @@ struct CarStatusData
     float       m_ersHarvestedThisLapMGUH;  // ERS energy harvested this lap by MGU-H
     float       m_ersDeployedThisLap;       // ERS energy deployed this lap
 };
+
+#endif

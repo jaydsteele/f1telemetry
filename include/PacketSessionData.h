@@ -1,3 +1,6 @@
+#ifndef __PacketSessionData_h__
+#define __PacketSessionData_h__
+
 #include "include/types.h"
 #include "include/PacketHeader.h"
 #include "include/MarshallZone.h"
@@ -30,3 +33,5 @@ struct PacketSessionData
                                                 // 2 = virtual safety car
     uint8          m_networkGame;              // 0 = offline, 1 = online
 };
+
+#endif

@@ -1,3 +1,6 @@
+#ifndef __ParticipantData_h__
+#define __ParticipantData_h__
+
 #include "include/types.h"
 
 struct ParticipantData
@@ -10,3 +13,5 @@ struct ParticipantData
     char       m_name[48];               // Name of participant in UTF-8 format – null terminated
                                          // Will be truncated with … (U+2026) if too long
 };
+
+#endif

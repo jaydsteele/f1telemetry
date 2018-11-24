@@ -1,3 +1,6 @@
+#ifndef __PacketMotionData_h__
+#define __PacketMotionData_h__
+
 #include "include/PacketHeader.h"
 #include "include/CarMotionData.h"
 
@@ -24,3 +27,5 @@ struct PacketMotionData
     float         m_angularAccelerationZ;        // Angular velocity z-component
     float         m_frontWheelsAngle;            // Current front wheels angle in radians
 };
+
+#endif

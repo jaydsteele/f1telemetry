@@ -1,3 +1,6 @@
+#ifndef __LapData_h__
+#define __LapData_h__
+
 #include "include/types.h"
 
 struct LapData
@@ -25,3 +28,5 @@ struct LapData
                                          // 3 = finished, 4 = disqualified, 5 = not classified
                                          // 6 = retired
 };
+
+#endif

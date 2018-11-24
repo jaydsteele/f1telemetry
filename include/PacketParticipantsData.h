@@ -1,3 +1,6 @@
+#ifndef __PacketParticipantsData_h__
+#define __PacketParticipantsData_h__
+
 #include "include/types.h"
 #include "include/PacketHeader.h"
 #include "include/ParticipantData.h"
@@ -9,3 +12,5 @@ struct PacketParticipantsData
     uint8           m_numCars;           // Number of cars in the data
     ParticipantData m_participants[20];
 };
+
+#endif

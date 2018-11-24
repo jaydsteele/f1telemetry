@@ -1,3 +1,6 @@
+#ifndef __PacketCarStatusData_h__
+#define __PacketCarStatusData_h__
+
 #include "include/PacketHeader.h"
 #include "include/CarStatusData.h"
 
@@ -7,3 +10,5 @@ struct PacketCarStatusData
 
     CarStatusData       m_carStatusData[20];
 };
+
+#endif

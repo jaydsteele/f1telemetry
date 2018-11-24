@@ -1,3 +1,6 @@
+#ifndef __CarMotionData_h__
+#define __CarMotionData_h__
+
 #include "include/types.h"
 
 struct CarMotionData
@@ -21,3 +24,5 @@ struct CarMotionData
     float         m_pitch;                    // Pitch angle in radians
     float         m_roll;                     // Roll angle in radians
 };
+
+#endif
