@@ -37,3 +37,6 @@
 /bazel-genfiles
 /bazel-out
 /bazel-testlogs
+
+# data directory
+/data
