@@ -7,7 +7,7 @@
 #include <sys/socket.h>
 #include <unistd.h>
 
-#define MAXBUFFER 1024
+#define BUFFER_SIZE 4096
 
 void capture_telemetry(unsigned short port, std::ostream& out) {
   int sockfd;
@@ -42,11 +42,11 @@ void capture_telemetry(unsigned short port, std::ostream& out) {
   int n;
   long totalData = 0;
   int count = 0;
-  char buffer[MAXBUFFER];
+  char buffer[BUFFER_SIZE];
   struct sockaddr_in clientAddr;
   socklen_t clientLen = sizeof(clientAddr);
   while (1) {
-    n = recvfrom(sockfd, buffer, BUFSIZ, 0,
+    n = recvfrom(sockfd, buffer, BUFFER_SIZE, 0,
       (struct sockaddr *)&clientAddr, &clientLen);
     if (n < 0) {
       std::cerr << "Error receiving data" << std::endl;
