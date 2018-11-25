@@ -24,5 +24,5 @@ cc_library(
       "TrackIDs.h",
       "types.h",
     ],
-    visibility = ["//f1capture:__pkg__"],
+    visibility = ["//capture:__pkg__"],
 )

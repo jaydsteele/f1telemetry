@@ -1,4 +1,4 @@
-#include "capture_telemetry.h"
+#include "udp_server.h"
 #include <iostream>
 #include <netinet/in.h>
 #include <stdio.h>
@@ -9,7 +9,7 @@
 
 #define BUFFER_SIZE 4096
 
-void capture_telemetry(unsigned short port, std::ostream& out) {
+void udp_server(unsigned short port, std::ostream& out) {
   int sockfd;
 
   // create the socket

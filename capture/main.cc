@@ -5,7 +5,7 @@
 #include <stdlib.h>
 #include <string>
 #include <sys/socket.h>
-#include "f1capture/capture_telemetry.h"
+#include "capture/udp_server.h"
 
 using namespace std;
 
@@ -58,7 +58,7 @@ int main(int argc, char** argv) {
   ofstream outFile;
   outFile.open(outputFilename, ios::out);
 
-  capture_telemetry(port, outFile);
+  udp_server(port, outFile);
 
   return 0;
 }
