@@ -41,8 +41,6 @@ static const char* const ResultStatus_name[] = {
 
 struct LapData
 {
-    static const int BUFFER_SIZE = 41;
-
     float       m_lastLapTime;           // Last lap time in seconds
     float       m_currentLapTime;        // Current time around the lap in seconds
     float       m_bestLapTime;           // Best lap time of the session in seconds
@@ -67,29 +65,23 @@ struct LapData
                                          // 6 = retired
 
     friend std::istream& operator >>(std::istream& is, LapData& data) {
-        static char buffer[BUFFER_SIZE];
-        is.read(buffer, sizeof(buffer));
-        int pos=0;
-        if (is.good()) {
-            data.m_lastLapTime = unpack_float(buffer, pos);
-            data.m_currentLapTime = unpack_float(buffer, pos+=4);
-            data.m_bestLapTime = unpack_float(buffer, pos+=4);
-            data.m_sector1Time = unpack_float(buffer, pos+=4);
-            data.m_sector2Time = unpack_float(buffer, pos+=4);
-            data.m_lapDistance = unpack_float(buffer, pos+=4);
-            data.m_totalDistance = unpack_float(buffer, pos+=4);
-            data.m_safetyCarDelta = unpack_float(buffer, pos+=4);
-
-            data.m_carPosition = unpack_uint8(buffer, pos+=4);
-            data.m_currentLapNum = unpack_uint8(buffer, pos+=1);
-            data.m_pitStatus = unpack_uint8(buffer, pos+=1);
-            data.m_sector = unpack_uint8(buffer, pos+=1);
-            data.m_currentLapInvalid = unpack_uint8(buffer, pos+=1);
-            data.m_penalties = unpack_uint8(buffer, pos+=1);
-            data.m_gridPosition = unpack_uint8(buffer, pos+=1);
-            data.m_driverStatus = unpack_uint8(buffer, pos+=1);
-            data.m_resultStatus = unpack_uint8(buffer, pos+=1);
-        }
+        is.read((char *)&data.m_lastLapTime, sizeof(float));
+        is.read((char *)&data.m_currentLapTime, sizeof(float));
+        is.read((char *)&data.m_bestLapTime, sizeof(float));
+        is.read((char *)&data.m_sector1Time, sizeof(float));
+        is.read((char *)&data.m_sector2Time, sizeof(float));
+        is.read((char *)&data.m_lapDistance, sizeof(float));
+        is.read((char *)&data.m_totalDistance, sizeof(float));
+        is.read((char *)&data.m_safetyCarDelta, sizeof(float));
+        is.read((char *)&data.m_carPosition, sizeof(uint8_t));
+        is.read((char *)&data.m_currentLapNum, sizeof(uint8_t));
+        is.read((char *)&data.m_pitStatus, sizeof(uint8_t));
+        is.read((char *)&data.m_sector, sizeof(uint8_t));
+        is.read((char *)&data.m_currentLapInvalid, sizeof(uint8_t));
+        is.read((char *)&data.m_penalties, sizeof(uint8_t));
+        is.read((char *)&data.m_gridPosition, sizeof(uint8_t));
+        is.read((char *)&data.m_driverStatus, sizeof(uint8_t));
+        is.read((char *)&data.m_resultStatus, sizeof(uint8_t));
         return is;
     }
 

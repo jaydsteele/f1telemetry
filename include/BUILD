@@ -6,7 +6,6 @@ cc_library(
       "CarSetupData.h",
       "CarStatusData.h",
       "CarTelemetryData.h",
-      "endian.h",
       "f1telemetry.h",
       "LapData.h",
       "MarshallZone.h",
@@ -21,7 +20,6 @@ cc_library(
       "ParticipantData.h",
       "PacketSessionData.h",
       "types.h",
-      "unpack.h",
       "utils.h",
     ],
     visibility = [

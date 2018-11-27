@@ -2,14 +2,11 @@
 #define __CarSetupData_h__
 
 #include "types.h"
-#include "unpack.h"
 #include "utils.h"
 #include <iostream>
 
 struct CarSetupData
 {
-    static const int BUFFER_SIZE = 41;
-
     uint8_t   m_frontWing;                // Front wing aero
     uint8_t   m_rearWing;                 // Rear wing aero
     uint8_t   m_onThrottle;               // Differential adjustment on throttle (percentage)
@@ -32,31 +29,26 @@ struct CarSetupData
     float     m_fuelLoad;                 // Fuel load
 
     friend std::istream& operator >>(std::istream& is, CarSetupData& data) {
-        static char buffer[BUFFER_SIZE];
-        is.read(buffer, sizeof(buffer));
-        int pos=0;
-        if (is.good()) {
-            data.m_frontWing = unpack_uint8(buffer, pos);
-            data.m_rearWing = unpack_uint8(buffer, pos+=1);
-            data.m_onThrottle = unpack_uint8(buffer, pos+=1);
-            data.m_offThrottle = unpack_uint8(buffer, pos+=1);
-            data.m_frontCamber = unpack_float(buffer, pos+=1);
-            data.m_rearCamber = unpack_float(buffer, pos+=4);
-            data.m_frontToe = unpack_float(buffer, pos+=4);
-            data.m_rearToe = unpack_float(buffer, pos+=4);
-            data.m_frontSuspension = unpack_uint8(buffer, pos+=4);
-            data.m_rearSuspension = unpack_uint8(buffer, pos+=1);
-            data.m_frontAntiRollBar = unpack_uint8(buffer, pos+=1);
-            data.m_rearAntiRollBar = unpack_uint8(buffer, pos+=1);
-            data.m_frontSuspensionHeight = unpack_uint8(buffer, pos+=1);
-            data.m_rearSuspensionHeight = unpack_uint8(buffer, pos+=1);
-            data.m_brakePressure = unpack_uint8(buffer, pos+=1);
-            data.m_brakeBias = unpack_uint8(buffer, pos+=1);
-            data.m_frontTyrePressure = unpack_float(buffer, pos+=1);
-            data.m_rearTyrePressure = unpack_float(buffer, pos+=4);
-            data.m_ballast = unpack_uint8(buffer, pos+=4);
-            data.m_fuelLoad = unpack_float(buffer, pos+=1);
-        }
+        is.read((char *)&data.m_frontWing, sizeof(uint8_t));
+        is.read((char *)&data.m_rearWing, sizeof(uint8_t));
+        is.read((char *)&data.m_onThrottle, sizeof(uint8_t));
+        is.read((char *)&data.m_offThrottle, sizeof(uint8_t));
+        is.read((char *)&data.m_frontCamber, sizeof(float));
+        is.read((char *)&data.m_rearCamber, sizeof(float));
+        is.read((char *)&data.m_frontToe, sizeof(float));
+        is.read((char *)&data.m_rearToe, sizeof(float));
+        is.read((char *)&data.m_frontSuspension, sizeof(uint8_t));
+        is.read((char *)&data.m_rearSuspension, sizeof(uint8_t));
+        is.read((char *)&data.m_frontAntiRollBar, sizeof(uint8_t));
+        is.read((char *)&data.m_rearAntiRollBar, sizeof(uint8_t));
+        is.read((char *)&data.m_frontSuspensionHeight, sizeof(uint8_t));
+        is.read((char *)&data.m_rearSuspensionHeight, sizeof(uint8_t));
+        is.read((char *)&data.m_brakePressure, sizeof(uint8_t));
+        is.read((char *)&data.m_brakeBias, sizeof(uint8_t));
+        is.read((char *)&data.m_frontTyrePressure, sizeof(float));
+        is.read((char *)&data.m_rearTyrePressure, sizeof(float));
+        is.read((char *)&data.m_ballast, sizeof(uint8_t));
+        is.read((char *)&data.m_fuelLoad, sizeof(float));
         return is;
     }
 

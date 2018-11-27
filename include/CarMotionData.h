@@ -2,14 +2,11 @@
 #define __CarMotionData_h__
 
 #include "types.h"
-#include "unpack.h"
 #include "utils.h"
 #include <iostream>
 
 struct CarMotionData
 {
-    static const int BUFFER_SIZE = 60;
-
     float         m_worldPositionX;           // World space X position
     float         m_worldPositionY;           // World space Y position
     float         m_worldPositionZ;           // World space Z position
@@ -30,29 +27,24 @@ struct CarMotionData
     float         m_roll;                     // Roll angle in radians
 
     friend std::istream& operator >>(std::istream& is, CarMotionData& data) {
-        static char buffer[BUFFER_SIZE];
-        is.read(buffer, sizeof(buffer));
-        if (!is.good()) return is;
-        int pos=0;
-        data.m_worldPositionX = unpack_float(buffer, pos);
-        data.m_worldPositionY = unpack_float(buffer, pos+=sizeof(float));
-        data.m_worldPositionZ = unpack_float(buffer, pos+=sizeof(float));
-        data.m_worldVelocityX = unpack_float(buffer, pos+=sizeof(float));
-        data.m_worldVelocityY = unpack_float(buffer, pos+=sizeof(float));
-        data.m_worldVelocityZ = unpack_float(buffer, pos+=sizeof(float));
-        data.m_worldForwardDirX = unpack_int16(buffer, pos+=sizeof(float));
-        data.m_worldForwardDirY = unpack_int16(buffer, pos+=2);
-        data.m_worldForwardDirZ = unpack_int16(buffer, pos+=2);
-        data.m_worldRightDirX = unpack_int16(buffer, pos+=2);
-        data.m_worldRightDirY = unpack_int16(buffer, pos+=2);
-        data.m_worldRightDirZ = unpack_int16(buffer, pos+=2);
-        data.m_gForceLateral = unpack_float(buffer, pos+=2);
-        data.m_gForceLongitudinal = unpack_float(buffer, pos+=2);
-        data.m_gForceVertical = unpack_float(buffer, pos+=2);
-        data.m_yaw = unpack_float(buffer, pos+=2);
-        data.m_pitch = unpack_float(buffer, pos+=2);
-        data.m_roll = unpack_float(buffer, pos+=2);
-
+        is.read((char *)&data.m_worldPositionX, sizeof(float));
+        is.read((char *)&data.m_worldPositionY, sizeof(float));
+        is.read((char *)&data.m_worldPositionZ, sizeof(float));
+        is.read((char *)&data.m_worldVelocityX, sizeof(float));
+        is.read((char *)&data.m_worldVelocityY, sizeof(float));
+        is.read((char *)&data.m_worldVelocityZ, sizeof(float));
+        is.read((char *)&data.m_worldForwardDirX, sizeof(int16_t));
+        is.read((char *)&data.m_worldForwardDirY, sizeof(int16_t));
+        is.read((char *)&data.m_worldForwardDirZ, sizeof(int16_t));
+        is.read((char *)&data.m_worldRightDirX, sizeof(int16_t));
+        is.read((char *)&data.m_worldRightDirY, sizeof(int16_t));
+        is.read((char *)&data.m_worldRightDirZ, sizeof(int16_t));
+        is.read((char *)&data.m_gForceLateral, sizeof(float));
+        is.read((char *)&data.m_gForceLongitudinal, sizeof(float));
+        is.read((char *)&data.m_gForceVertical, sizeof(float));
+        is.read((char *)&data.m_yaw, sizeof(float));
+        is.read((char *)&data.m_pitch, sizeof(float));
+        is.read((char *)&data.m_roll, sizeof(float));
         return is;
     }
 
