@@ -1,1 +1,0 @@
-// see https://forums.codemasters.com/discussion/136948/f1-2018-udp-specification
