@@ -7,17 +7,11 @@
 
 struct PacketParticipantsData
 {
-    static const int BUFFER_SIZE = 1;
-
     uint8_t         m_numCars;           // Number of cars in the data
     ParticipantData m_participants[20];
 
     friend std::istream& operator >>(std::istream& is, PacketParticipantsData& data) {
-        static char buffer[BUFFER_SIZE];
-        is.read(buffer, sizeof(buffer));
-        if (is.good()) {
-            data.m_numCars = unpack_uint8(buffer, 0);
-        }
+        is.read((char *)&data.m_numCars, sizeof(uint8_t));
         for (int i=0; i<data.m_numCars; i++) {
             is >> data.m_participants[i];
         }
