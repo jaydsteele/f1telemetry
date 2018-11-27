@@ -81,7 +81,6 @@ struct CarMotionData
         os << whitespace(indent) << "  m_pitch: " << this->m_pitch << std::endl;
         os << whitespace(indent) << "  m_roll: " << this->m_roll << std::endl;
 
-
         os << whitespace(indent) << "}" << std::endl;
     }
 
