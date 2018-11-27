@@ -7,7 +7,12 @@
 #include <iostream>
 
 enum Weather: uint8_t {
-    CLEAR = 0, LIGHT_CLOUD = 1, OVERCAST = 2, LIGHT_RAIN = 3, HEAVY_RAIN = 4, STORM = 5
+    WEATHER_CLEAR = 0,
+    WEATHER_LIGHT_CLOUD = 1,
+    WEATHER_OVERCAST = 2,
+    WEATHER_LIGHT_RAIN = 3,
+    WEATHER_HEAVY_RAIN = 4,
+    WEATHER_STORM = 5
 };
 
 static const char * const Weather_name[] = {
@@ -15,8 +20,19 @@ static const char * const Weather_name[] = {
 };
 
 enum SessionType: uint8_t {
-    UNKNOWN = 0, P1 = 1, P2 = 2, P3 = 3, SHORT_P = 4, Q1 = 5, Q2 = 6, Q3 = 7,
-    SHORT_Q = 8, OSQ = 9, R = 10, R2 = 11, TIME_TRIAL = 12
+    SESSION_TYPE_UNKNOWN = 0,
+    SESSION_TYPE_P1 = 1,
+    SESSION_TYPE_P2 = 2,
+    SESSION_TYPE_P3 = 3,
+    SESSION_TYPE_SHORT_P = 4,
+    SESSION_TYPE_Q1 = 5,
+    SESSION_TYPE_Q2 = 6,
+    SESSION_TYPE_Q3 = 7,
+    SESSION_TYPE_SHORT_Q = 8,
+    SESSION_TYPE_OSQ = 9,
+    SESSION_TYPE_R = 10,
+    SESSION_TYPE_R2 = 11,
+    SESSION_TYPE_TIME_TRIAL = 12
 };
 
 static const char * const SessionType_name[] = {
@@ -25,11 +41,31 @@ static const char * const SessionType_name[] = {
 };
 
 enum TrackID: uint8_t {
-    MELBOURNE = 0, PAUL_RICARD = 1, SHANGHAI = 2, SAKHIR = 3, CATALUNYA = 4, MONACO = 5,
-    MONTREAL = 6, SILVERSTONE = 7, HOCKENHEIM = 8, HUNGARORING = 9, SPA = 10, MONZA = 11,
-    SINGAPORE = 12, SUZUKA = 13, ABU_DHABI = 14, TEXAS = 15, BRAZIL = 16, AUSTRIA = 17,
-    SOCHI = 18, MEXICO = 19, BAKU = 20, SAKHIR_SHORT = 21, SILVERSTONE_SHORT = 22,
-    TEXAS_SHORT = 23, SUZUKA_SHORT = 24
+    TRACK_ID_MELBOURNE = 0,
+    TRACK_ID_PAUL_RICARD = 1,
+    TRACK_ID_SHANGHAI = 2,
+    TRACK_ID_SAKHIR = 3,
+    TRACK_ID_CATALUNYA = 4,
+    TRACK_ID_MONACO = 5,
+    TRACK_ID_MONTREAL = 6,
+    TRACK_ID_SILVERSTONE = 7,
+    TRACK_ID_HOCKENHEIM = 8,
+    TRACK_ID_HUNGARORING = 9,
+    TRACK_ID_SPA = 10,
+    TRACK_ID_MONZA = 11,
+    TRACK_ID_SINGAPORE = 12,
+    TRACK_ID_SUZUKA = 13,
+    TRACK_ID_ABU_DHABI = 14,
+    TRACK_ID_TEXAS = 15,
+    TRACK_ID_BRAZIL = 16,
+    TRACK_ID_AUSTRIA = 17,
+    TRACK_ID_SOCHI = 18,
+    TRACK_ID_MEXICO = 19,
+    TRACK_ID_BAKU = 20,
+    TRACK_ID_SAKHIR_SHORT = 21,
+    TRACK_ID_SILVERSTONE_SHORT = 22,
+    TRACK_ID_TEXAS_SHORT = 23,
+    TRACK_ID_SUZUKA_SHORT = 24
 };
 
 static const char * const TrackID_name[] = {
@@ -40,7 +76,7 @@ static const char * const TrackID_name[] = {
 };
 
 enum Era: uint8_t {
-    MODERN = 0, CLASSIC = 1,
+    ERA_MODERN = 0, ERA_CLASSIC = 1,
 };
 
 static const char * const Era_name[] = {
@@ -48,7 +84,7 @@ static const char * const Era_name[] = {
 };
 
 enum SLIProNativeSupport: uint8_t {
-    INACTIVE = 0, ACTIVE = 1,
+    SLIP_PRO_NATIVE_SUPPORT_INACTIVE = 0, SLIP_PRO_NATIVE_SUPPORT_ACTIVE = 1,
 };
 
 static const char * const SLIProNativeSupport_name[] = {
@@ -64,7 +100,7 @@ static const char * const SafetyCarStatus_name[] = {
 };
 
 enum NetworkGame: uint8_t {
-    OFFLINE = 0, ONLINE = 1,
+    NETWORK_GAME_OFFLINE = 0, NETWORK_GAME_ONLINE = 1,
 };
 
 static const char * const NetworkGame_name[] = {

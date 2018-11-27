@@ -6,14 +6,14 @@
 #include <iostream>
 
 enum PacketID: uint8_t {
-    MOTION = 0,
-    SESSION = 1,
-    LAP_DATA = 2,
-    EVENT = 3,
-    PARTICIPANTS = 4,
-    CAR_SETUPS = 5,
-    CAR_TELEMETRY = 6,
-    CAR_STATUS = 7,
+    PACKET_ID_MOTION = 0,
+    PACKET_ID_SESSION = 1,
+    PACKET_ID_LAP_DATA = 2,
+    PACKET_ID_EVENT = 3,
+    PACKET_ID_PARTICIPANTS = 4,
+    PACKET_ID_CAR_SETUPS = 5,
+    PACKET_ID_CAR_TELEMETRY = 6,
+    PACKET_ID_CAR_STATUS = 7,
 };
 
 static const char * const PacketID_name[] = {
