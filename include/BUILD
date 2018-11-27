@@ -7,6 +7,8 @@ cc_library(
       "CarStatusData.h",
       "CarTelemetryData.h",
       "DriverIDs.h",
+      "endian.h",
+      "f1telemetry.h",
       "LapData.h",
       "MarshallZone.h",
       "NationalityIDs.h",
@@ -18,11 +20,15 @@ cc_library(
       "PacketLapData.h",
       "PacketMotionData.h",
       "PacketParticipantsData.h",
-      "PacketSessionData.h",
       "ParticipantData.h",
+      "PacketSessionData.h",
       "TeamIDs.h",
       "TrackIDs.h",
       "types.h",
+      "unpack.h",
+      "utils.h",
     ],
-    visibility = ["//capture:__pkg__"],
+    visibility = [
+      "//visibility:public"
+    ],
 )

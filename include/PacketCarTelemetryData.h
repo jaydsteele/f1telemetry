@@ -11,7 +11,7 @@ struct PacketCarTelemetryData
 
     CarTelemetryData    m_carTelemetryData[20];
 
-    uint32              m_buttonStatus;         // Bit flags specifying which buttons are being
+    uint32_t            m_buttonStatus;         // Bit flags specifying which buttons are being
                                                 // pressed currently - see appendices
 };
 
