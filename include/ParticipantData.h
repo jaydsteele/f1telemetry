@@ -97,7 +97,7 @@ struct ParticipantData
     char       m_name[48];               // Name of participant in UTF-8 format – null terminated
                                          // Will be truncated with … (U+2026) if too long
 
-    wchar_t    m_name_w[24];             // wide character version of m_name
+    wchar_t    m_name_w[24];             // wide character duplicate of m_name
 
     friend std::istream& operator >>(std::istream& is, ParticipantData& data) {
         static char buffer[BUFFER_SIZE];
