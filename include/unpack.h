@@ -19,6 +19,12 @@ uint16_t unpack_uint16(char* b, int i) {
   return Swap2Bytes(result);
 }
 
+int16_t unpack_int16(char* b, int i) {
+  int16_t result;
+  memcpy(&result, &b[i], sizeof(int16_t));
+  return Swap2Bytes(result);
+}
+
 uint32_t unpack_uint32(char* b, int i) {
   uint32_t result;
   memcpy(&result, &b[i], sizeof(uint32_t));
@@ -39,6 +45,13 @@ float unpack_float(char* b, int i) {
   float result;
   memcpy(&result, &b[i], sizeof(float));
   return Swap4Bytes(result);
+}
+
+void unpack_float_vec4(char* buffer, int pos, float* vec) {
+    vec[0] = unpack_float(buffer, pos);
+    vec[1] = unpack_float(buffer, pos+=sizeof(float));
+    vec[2] = unpack_float(buffer, pos+=sizeof(float));
+    vec[3] = unpack_float(buffer, pos+=sizeof(float));
 }
 
 #endif
