@@ -120,10 +120,10 @@ struct ParticipantData
         std::mbstowcs(wm_name, this->m_name, 24);
         os << whitespace(indent) << "ParticipantData {" << std::endl;
         os << whitespace(indent) << "  m_aiControlled: " << (int)this->m_aiControlled << std::endl;
-        os << whitespace(indent) << "  m_driverId: " << (int)this->m_driverId << std::endl;
-        os << whitespace(indent) << "  m_teamId: " << (int)this->m_teamId << std::endl;
+        os << whitespace(indent) << "  m_driverId: " << DriverID_name[this->m_driverId] << std::endl;
+        os << whitespace(indent) << "  m_teamId: " << TeamID_name[this->m_teamId] << std::endl;
         os << whitespace(indent) << "  m_raceNumber: " << (int)this->m_raceNumber << std::endl;
-        os << whitespace(indent) << "  m_nationality: " << (int)this->m_nationality << std::endl;
+        os << whitespace(indent) << "  m_nationality: " << Nationality_name[this->m_nationality] << std::endl;
         os << whitespace(indent) << "  m_name: " << this->m_name_w << std::endl;
         os << whitespace(indent) << "}" << std::endl;
     }
