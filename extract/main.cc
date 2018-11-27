@@ -62,21 +62,66 @@ int main(int argc, char** argv) {
     exit(EXIT_FAILURE);
   }
 
-  PacketHeader packetHeader;
-  PacketSessionData sessionData;
-  PacketParticipantsData packetParticipantsData;
+  PacketHeader pHeader;
+  PacketCarSetupData pCarSetupData;
+  PacketCarStatusData pCarStatusData;
+  PacketCarTelemetryData pCarTelemetryData;
+  PacketLapData pLapData;
+  PacketMotionData pMotionData;
+  PacketParticipantsData pParticipantsData;
+  PacketSessionData pSessionData;
+  PacketEventData pEventData;
 
-  inFile >> packetHeader;
-  packetHeader.dump(wcout);
+  while (inFile.good()) {
+    inFile >> pHeader;
+    // cout << "Packet: " << (int)pHeader.m_packetId << endl;
+    pHeader.dump(wcout);
+    switch(pHeader.m_packetId) {
+      case PACKET_ID_CAR_SETUPS:
+        inFile >> pCarSetupData;
+        break;
+      case PACKET_ID_CAR_STATUS:
+        inFile >> pCarStatusData;
+        break;
+      case PACKET_ID_CAR_TELEMETRY:
+        inFile >> pCarTelemetryData;
+        break;
+      case PACKET_ID_EVENT:
+        inFile >> pEventData;
+        break;
+      case PACKET_ID_LAP_DATA:
+        inFile >> pLapData;
+        break;
+      case PACKET_ID_MOTION:
+        inFile >> pMotionData;
+        break;
+      case PACKET_ID_PARTICIPANTS:
+        inFile >> pParticipantsData;
+        break;
+      case PACKET_ID_SESSION:
+        inFile >> pSessionData;
+        break;
+      default:
+        cerr << "Unsupported packet ID: " << (int)pHeader.m_packetId << endl;
+        inFile.close();
+        outFile.close();
+        exit(EXIT_FAILURE);
+    }
+  }
 
-  inFile >> sessionData;
-  sessionData.dump(wcout);
-
-  inFile >> packetHeader;
-  packetHeader.dump(wcout);
-
-  inFile >> packetParticipantsData;
-  packetParticipantsData.dump(wcout);
+  // inFile >> pHeader; pHeader.dump(wcout);
+  // inFile >> pSessionData; pSessionData.dump(wcout);
+  // inFile >> pHeader; pHeader.dump(wcout);
+  // inFile >> pParticipantsData; pParticipantsData.dump(wcout);
+  // inFile >> pHeader; pHeader.dump(wcout);
+  // inFile >> pCarSetupData; pCarSetupData.dump(wcout);
+  // inFile >> pHeader; pHeader.dump(wcout);
+  // inFile >> pLapData; pLapData.dump(wcout);
+  // inFile >> pHeader; pHeader.dump(wcout);
+  // inFile >> pMotionData; pMotionData.dump(wcout);
+  // inFile >> pHeader; pHeader.dump(wcout);
+  // inFile >> pCarTelemetryData; pCarTelemetryData.dump(wcout);
+  // inFile >> pHeader; pHeader.dump(wcout);
 
   return 0;
 }
