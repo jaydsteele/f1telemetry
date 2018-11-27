@@ -2,6 +2,7 @@
 #define __ParticipantData_h__
 
 #include "types.h"
+#include "utils.h"
 #include <cstring>
 #include <iostream>
 
