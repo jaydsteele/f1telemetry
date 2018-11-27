@@ -109,9 +109,6 @@ static const char * const NetworkGame_name[] = {
 
 struct PacketSessionData
 {
-    static const int SECTION1_BUFFER_SIZE = 19;
-    static const int SECTION2_BUFFER_SIZE = 2;
-
     uint8_t         m_weather;              // Weather - 0 = clear, 1 = light cloud, 2 = overcast
                                             // 3 = light rain, 4 = heavy rain, 5 = storm
     int8_t          m_trackTemperature;    	// Track temp. in degrees celsius
@@ -137,38 +134,27 @@ struct PacketSessionData
     uint8_t        m_networkGame;           // 0 = offline, 1 = online
 
     friend std::istream& operator >>(std::istream& is, PacketSessionData& data) {
-        // first read everything preceeding the marshall zones
-        static char buffer1[SECTION1_BUFFER_SIZE];
-        is.read(buffer1, sizeof(buffer1));
-        if (is.good()) {
-            int pos = 0;
-            data.m_weather = unpack_uint8(buffer1, pos);
-            data.m_trackTemperature = unpack_int8(buffer1, pos+=1);
-            data.m_airTemperature = unpack_int8(buffer1, pos+=1);
-            data.m_totalLaps = unpack_uint8(buffer1, pos+=1);
-            data.m_trackLength = unpack_uint16(buffer1, pos+=1);
-            data.m_sessionType = unpack_uint8(buffer1, pos+=2);
-            data.m_trackId = unpack_int8(buffer1, pos+=1);
-            data.m_era = unpack_uint8(buffer1, pos+=1);
-            data.m_sessionTimeLeft = unpack_uint16(buffer1, pos+=1);
-            data.m_sessionDuration = unpack_uint16(buffer1, pos+=2);
-            data.m_pitSpeedLimit = unpack_uint8(buffer1, pos+=2);
-            data.m_gamePaused = unpack_uint8(buffer1, pos+=1);
-            data.m_isSpectating = unpack_uint8(buffer1, pos+=1);
-            data.m_spectatorCarIndex = unpack_uint8(buffer1, pos+=1);
-            data.m_sliProNativeSupport = unpack_uint8(buffer1, pos+=1);
-            data.m_numMarshalZones = unpack_uint8(buffer1, pos+=1);
-        }
+        is.read((char *)&data.m_weather, sizeof(uint8_t));
+        is.read((char *)&data.m_trackTemperature, sizeof(int8_t));
+        is.read((char *)&data.m_airTemperature, sizeof(int8_t));
+        is.read((char *)&data.m_totalLaps, sizeof(uint8_t));
+        is.read((char *)&data.m_trackLength, sizeof(uint16_t));
+        is.read((char *)&data.m_sessionType, sizeof(uint8_t));
+        is.read((char *)&data.m_trackId, sizeof(int8_t));
+        is.read((char *)&data.m_era, sizeof(uint8_t));
+        is.read((char *)&data.m_sessionTimeLeft, sizeof(uint16_t));
+        is.read((char *)&data.m_sessionDuration, sizeof(uint16_t));
+        is.read((char *)&data.m_pitSpeedLimit, sizeof(uint8_t));
+        is.read((char *)&data.m_gamePaused, sizeof(uint8_t));
+        is.read((char *)&data.m_isSpectating, sizeof(uint8_t));
+        is.read((char *)&data.m_spectatorCarIndex, sizeof(uint8_t));
+        is.read((char *)&data.m_sliProNativeSupport, sizeof(uint8_t));
+        is.read((char *)&data.m_numMarshalZones, sizeof(uint8_t));
         for (int i=0; i<21; i++) {
             is >> data.m_marshalZones[i];
         }
-        static char buffer2[SECTION2_BUFFER_SIZE];
-        is.read(buffer2, sizeof(buffer2));
-        if (is.good()) {
-            int pos = 0;
-            data.m_safetyCarStatus = unpack_uint8(buffer2, pos);
-            data.m_networkGame = unpack_uint8(buffer2, pos+=1);
-        }
+        is.read((char *)&data.m_safetyCarStatus, sizeof(uint8_t));
+        is.read((char *)&data.m_networkGame, sizeof(uint8_t));
         return is;
     }
 

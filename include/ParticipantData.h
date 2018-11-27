@@ -244,8 +244,6 @@ static const char * const Nationality_name[] = {
 
 struct ParticipantData
 {
-    static const int BUFFER_SIZE = 53;
-
     uint8_t    m_aiControlled;           // Whether the vehicle is AI (1) or Human (0) controlled
     uint8_t    m_driverId;               // Driver id - see appendix
     uint8_t    m_teamId;                 // Team id - see appendix
@@ -257,24 +255,17 @@ struct ParticipantData
     wchar_t    m_name_w[24];             // wide character duplicate of m_name
 
     friend std::istream& operator >>(std::istream& is, ParticipantData& data) {
-        static char buffer[BUFFER_SIZE];
-        is.read(buffer, sizeof(buffer));
-        if (is.good()) {
-            int pos = 0;
-            data.m_aiControlled = unpack_uint8(buffer, pos);
-            data.m_driverId = unpack_uint8(buffer, pos+=1);
-            data.m_teamId = unpack_uint8(buffer, pos+=1);
-            data.m_raceNumber = unpack_uint8(buffer, pos+=1);
-            data.m_nationality = unpack_uint8(buffer, pos+=1);
-            memcpy(data.m_name, &buffer[pos+=1], 48);
-            std::mbstowcs(data.m_name_w, &buffer[pos], 24);
-        }
+        is.read((char *)&data.m_aiControlled, sizeof(uint8_t));
+        is.read((char *)&data.m_driverId, sizeof(uint8_t));
+        is.read((char *)&data.m_teamId, sizeof(uint8_t));
+        is.read((char *)&data.m_raceNumber, sizeof(uint8_t));
+        is.read((char *)&data.m_nationality, sizeof(uint8_t));
+        is.read((char *)&data.m_name, sizeof(char)*48);
+        std::mbstowcs(data.m_name_w, data.m_name, 24);
         return is;
     }
 
     void dump(std::wostream& os, int indent=0) {
-        wchar_t wm_name[24];
-        std::mbstowcs(wm_name, this->m_name, 24);
         os << whitespace(indent) << "ParticipantData {" << std::endl;
         os << whitespace(indent) << "  m_aiControlled: " << (int)this->m_aiControlled << std::endl;
         os << whitespace(indent) << "  m_driverId: " << DriverID_name[this->m_driverId] << std::endl;
