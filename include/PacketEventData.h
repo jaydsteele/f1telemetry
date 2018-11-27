@@ -1,8 +1,8 @@
 #ifndef __PacketEventData_h__
 #define __PacketEventData_h__
 
-#include "include/types.h"
-#include "include/PacketHeader.h"
+#include "types.h"
+#include "PacketHeader.h"
 
 struct PacketEventData
 {

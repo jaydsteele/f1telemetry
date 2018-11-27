@@ -1,9 +1,9 @@
 #ifndef __PacketCarTelemetryData_h__
 #define __PacketCarTelemetryData_h__
 
-#include "include/types.h"
-#include "include/PacketHeader.h"
-#include "include/CarTelemetryData.h"
+#include "types.h"
+#include "PacketHeader.h"
+#include "CarTelemetryData.h"
 
 struct PacketCarTelemetryData
 {

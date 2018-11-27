@@ -1,7 +1,7 @@
 #ifndef __LapData_h__
 #define __LapData_h__
 
-#include "include/types.h"
+#include "types.h"
 
 struct LapData
 {

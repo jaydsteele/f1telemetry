@@ -1,9 +1,9 @@
 #ifndef __PacketParticipantsData_h__
 #define __PacketParticipantsData_h__
 
-#include "include/types.h"
-#include "include/PacketHeader.h"
-#include "include/ParticipantData.h"
+#include "types.h"
+#include "PacketHeader.h"
+#include "ParticipantData.h"
 
 struct PacketParticipantsData
 {

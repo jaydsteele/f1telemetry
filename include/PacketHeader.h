@@ -1,8 +1,8 @@
 #ifndef __PacketHeader_h__
 #define __PacketHeader_h__
 
-#include "include/types.h"
-#include "include/unpack.h"
+#include "types.h"
+#include "unpack.h"
 #include <iostream>
 
 enum PacketID: uint8_t {

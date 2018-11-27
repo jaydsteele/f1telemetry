@@ -1,8 +1,8 @@
 #ifndef __PacketMotionData_h__
 #define __PacketMotionData_h__
 
-#include "include/PacketHeader.h"
-#include "include/CarMotionData.h"
+#include "PacketHeader.h"
+#include "CarMotionData.h"
 
 struct PacketMotionData
 {

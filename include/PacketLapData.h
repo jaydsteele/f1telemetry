@@ -1,8 +1,8 @@
 #ifndef __PacketLapData_h__
 #define __PacketLapData_h__
 
-#include "include/PacketHeader.h"
-#include "include/LapData.h"
+#include "PacketHeader.h"
+#include "LapData.h"
 
 struct PacketLapData
 {
