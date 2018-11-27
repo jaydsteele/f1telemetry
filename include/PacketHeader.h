@@ -2,7 +2,6 @@
 #define __PacketHeader_h__
 
 #include "types.h"
-#include "unpack.h"
 #include <iostream>
 
 enum PacketID: uint8_t {
@@ -23,8 +22,6 @@ static const char * const PacketID_name[] = {
 
 struct PacketHeader
 {
-    static const int BUFFER_SIZE = 21;
-
     uint16_t    m_packetFormat;       // 2018
     uint8_t     m_packetVersion;      // Version of this packet type, all start from 1
     uint8_t     m_packetId;           // Identifier for the packet type, see below
@@ -34,18 +31,13 @@ struct PacketHeader
     uint8_t     m_playerCarIndex;     // Index of player's car in the array
 
     friend std::istream& operator >>(std::istream& is, PacketHeader& data) {
-        static char buffer[BUFFER_SIZE];
-        is.read(buffer, sizeof(buffer));
-        int pos=0;
-        if (is.good()) {
-            data.m_packetFormat = unpack_uint16(buffer, pos);
-            data.m_packetVersion = unpack_uint8(buffer, pos+=2);
-            data.m_packetId = unpack_uint8(buffer, pos+=1);
-            data.m_sessionUID = unpack_uint64(buffer, pos+=1);
-            data.m_sessionTime = unpack_float(buffer, pos+=8);
-            data.m_frameIdentifier = unpack_uint(buffer, pos+=4);
-            data.m_playerCarIndex = unpack_uint8(buffer, pos+=4);
-        }
+        is.read((char *)&data.m_packetFormat, sizeof(uint16_t));
+        is.read((char *)&data.m_packetVersion, sizeof(uint8_t));
+        is.read((char *)&data.m_packetId, sizeof(uint8_t));
+        is.read((char *)&data.m_sessionUID, sizeof(uint64_t));
+        is.read((char *)&data.m_sessionTime, sizeof(float));
+        is.read((char *)&data.m_frameIdentifier, sizeof(uint_t));
+        is.read((char *)&data.m_playerCarIndex, sizeof(uint8_t));
         return is;
     }
 
