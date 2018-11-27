@@ -7,8 +7,6 @@
 
 struct PacketMotionData
 {
-    static const int BUFFER_SIZE = 120;
-
     CarMotionData   m_carMotionData[20];    // Data for all cars on track
 
     // Extra player car ONLY data
@@ -32,33 +30,21 @@ struct PacketMotionData
         for (int i=0; i<20; i++) {
             is >> data.m_carMotionData[i];
         }
-        if (!is.good()) return is;
-
-        static char buffer[BUFFER_SIZE];
-        is.read(buffer, sizeof(buffer));
-        if (!is.good()) return is;
-        int pos = 0;
-
-        unpack_float_vec4(buffer, pos, data.m_suspensionPosition);
-        unpack_float_vec4(buffer, pos+=(sizeof(float)*4), data.m_suspensionVelocity);
-        unpack_float_vec4(buffer, pos+=(sizeof(float)*4), data.m_suspensionAcceleration);
-        unpack_float_vec4(buffer, pos+=(sizeof(float)*4), data.m_wheelSpeed);
-        unpack_float_vec4(buffer, pos+=(sizeof(float)*4), data.m_wheelSlip);
-
-        data.m_localVelocityX = unpack_float(buffer, pos+=(sizeof(float)*4));
-        data.m_localVelocityY = unpack_float(buffer, pos+=sizeof(float));
-        data.m_localVelocityZ = unpack_float(buffer, pos+=sizeof(float));
-
-        data.m_angularVelocityX = unpack_float(buffer, pos+=sizeof(float));
-        data.m_angularVelocityY = unpack_float(buffer, pos+=sizeof(float));
-        data.m_angularVelocityZ = unpack_float(buffer, pos+=sizeof(float));
-
-        data.m_angularAccelerationX = unpack_float(buffer, pos+=sizeof(float));
-        data.m_angularAccelerationY = unpack_float(buffer, pos+=sizeof(float));
-        data.m_angularAccelerationZ = unpack_float(buffer, pos+=sizeof(float));
-
-        data.m_frontWheelsAngle = unpack_float(buffer, pos+=sizeof(float));
-
+        is.read((char *)&data.m_suspensionPosition, sizeof(float)*4);
+        is.read((char *)&data.m_suspensionVelocity, sizeof(float)*4);
+        is.read((char *)&data.m_suspensionAcceleration, sizeof(float)*4);
+        is.read((char *)&data.m_wheelSpeed, sizeof(float)*4);
+        is.read((char *)&data.m_wheelSlip, sizeof(float)*4);
+        is.read((char *)&data.m_localVelocityX, sizeof(float));
+        is.read((char *)&data.m_localVelocityY, sizeof(float));
+        is.read((char *)&data.m_localVelocityZ, sizeof(float));
+        is.read((char *)&data.m_angularVelocityX, sizeof(float));
+        is.read((char *)&data.m_angularVelocityY, sizeof(float));
+        is.read((char *)&data.m_angularVelocityZ, sizeof(float));
+        is.read((char *)&data.m_angularAccelerationX, sizeof(float));
+        is.read((char *)&data.m_angularAccelerationY, sizeof(float));
+        is.read((char *)&data.m_angularAccelerationZ, sizeof(float));
+        is.read((char *)&data.m_frontWheelsAngle, sizeof(float));
         return is;
     }
 
