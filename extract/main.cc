@@ -15,20 +15,25 @@ int main(int argc, char** argv) {
   static struct option longopts[] = {
     { "input", required_argument, 0, 'i' },
     { "output", required_argument, 0, 'o' },
+    { "verbose", no_argument, 0, 'v' },
   };
 
   int c;
   string inputFilename;
   string outputFilename;
   bool error = false;
+  bool verbose = false;
 
-  while ((c = getopt_long(argc, argv, "i:o:", longopts, NULL)) != -1) {
+  while ((c = getopt_long(argc, argv, "i:o:v", longopts, NULL)) != -1) {
     switch(c) {
       case 'i':
         inputFilename = optarg;
         break;
       case 'o':
         outputFilename = optarg;
+        break;
+      case 'v':
+        verbose = true;
         break;
     }
   }
@@ -78,20 +83,19 @@ int main(int argc, char** argv) {
 
   while (inFile.good()) {
     inFile >> pHeader;
-    // cout << "Packet: " << (int)pHeader.m_packetId << endl;
-    pHeader.dump(wcout);
+    if (verbose) pHeader.dump(wcout);
     switch(pHeader.m_packetId) {
       case PACKET_ID_CAR_SETUPS:
         inFile >> pCarSetupData;
-        // pCarSetupData.dump(wcout);
+        if (verbose) pCarSetupData.dump(wcout);
         break;
       case PACKET_ID_CAR_STATUS:
         inFile >> pCarStatusData;
-        // pCarStatusData.dump(wcout);
+        if (verbose) pCarStatusData.dump(wcout);
         break;
       case PACKET_ID_CAR_TELEMETRY:
         inFile >> pCarTelemetryData;
-        // pCarTelemetryData.dump(wcout);
+        if (verbose) pCarTelemetryData.dump(wcout);
         car = &pCarTelemetryData.m_carTelemetryData[pHeader.m_playerCarIndex];
         outFile << pHeader.m_sessionTime;
         outFile << "," << (int)car->m_speed;
@@ -124,23 +128,23 @@ int main(int argc, char** argv) {
         break;
       case PACKET_ID_EVENT:
         inFile >> pEventData;
-        // pEventData.dump(wcout);
+        if (verbose) pEventData.dump(wcout);
         break;
       case PACKET_ID_LAP_DATA:
         inFile >> pLapData;
-        // pLapData.dump(wcout);
+        if (verbose) pLapData.dump(wcout);
         break;
       case PACKET_ID_MOTION:
         inFile >> pMotionData;
-        // pMotionData.dump(wcout);
+        if (verbose) pMotionData.dump(wcout);
         break;
       case PACKET_ID_PARTICIPANTS:
         inFile >> pParticipantsData;
-        // pParticipantsData.dump(wcout);
+        if (verbose) pParticipantsData.dump(wcout);
         break;
       case PACKET_ID_SESSION:
         inFile >> pSessionData;
-        // pSessionData.dump(wcout);
+        if (verbose) pSessionData.dump(wcout);
         break;
       default:
         cerr << "Unsupported packet ID: " << (int)pHeader.m_packetId << endl;
@@ -150,30 +154,6 @@ int main(int argc, char** argv) {
     }
   }
 
-  // inFile >> pHeader; pHeader.dump(wcout);
-  // inFile >> pSessionData; pSessionData.dump(wcout);
-  // inFile >> pHeader; pHeader.dump(wcout);
-  // inFile >> pParticipantsData; pParticipantsData.dump(wcout);
-  // inFile >> pHeader; pHeader.dump(wcout);
-  // inFile >> pCarSetupData; pCarSetupData.dump(wcout);
-  // inFile >> pHeader; pHeader.dump(wcout);
-  // inFile >> pLapData; pLapData.dump(wcout);
-  // inFile >> pHeader; pHeader.dump(wcout);
-  // inFile >> pMotionData; pMotionData.dump(wcout);
-  // inFile >> pHeader; pHeader.dump(wcout);
-  // inFile >> pCarTelemetryData; pCarTelemetryData.dump(wcout);
-  // inFile >> pHeader; pHeader.dump(wcout);
-
-  // session3
-  // inFile >> pHeader; pHeader.dump(wcout);
-  // inFile >> pEventData; pEventData.dump(wcout);
-  // inFile >> pHeader; pHeader.dump(wcout);
-  // inFile >> pSessionData; pSessionData.dump(wcout);
-  // inFile >> pHeader; pHeader.dump(wcout);
-  // inFile >> pCarSetupData; pCarSetupData.dump(wcout);
-  // inFile >> pHeader; pHeader.dump(wcout);
-
-
   return 0;
 }
 
@@ -181,5 +161,6 @@ void displayUsage(string programName) {
   cerr << "Usage: " << programName
     << " --input|-i <input-filename>"
     << " --output|-o <output-filename>"
+    << " --verbose|-v"
     << endl;
 }
