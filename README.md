@@ -47,7 +47,7 @@ In order to capture data, you'll need to set up your F12018 game to broadcast. I
 
 Most of the rest of the configuration settings can remain the same, unless there is something different about your home network.
 
-If you want more detailed telemetry, you can up the UDP send rate. Be warned, the higher the send rate, the larger your capture files will be. For example, I tried 60Hz, and one single lap of a track game me almost 30MB.
+If you want more detailed telemetry, you can up the UDP send rate. Be warned, the higher the send rate, the larger your capture files will be. For example, I tried 60Hz, and one single lap of a track burned a 30MB hole in my hard drive.
 
 After configuring the game properly, it will always broadcast UDP race data on your local network.
 
